@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:linkedinclone/view/auth_view/signup_view/signup_view.dart';
 import 'package:linkedinclone/view/bottom_navigatore_view.dart';
 import 'package:linkedinclone/view/home_view/home_view.dart';
+import 'package:linkedinclone/view/splash_view/spalsh_view.dart';
 
 void main() {
   runApp(const MyApp());
