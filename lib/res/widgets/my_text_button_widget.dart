@@ -10,6 +10,7 @@ class MyTextButton extends StatelessWidget {
   final double? width;
   final double? height;
   final BorderRadius? borderRadius;
+  final Border? border;
   final Alignment? alignment;
   final void Function()? onTap;
 
@@ -24,7 +25,8 @@ class MyTextButton extends StatelessWidget {
       this.height,
       this.borderRadius,
       this.alignment,
-      this.onTap});
+      this.onTap,
+      this.border});
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +38,8 @@ class MyTextButton extends StatelessWidget {
         height: height,
         decoration: BoxDecoration(
           color: backgroundColor,
-          borderRadius: borderRadius ?? BorderRadius.circular(12)
+          borderRadius: borderRadius ?? BorderRadius.circular(12),
+          border: border,
         ),
         child: MyText(
           title: title,
