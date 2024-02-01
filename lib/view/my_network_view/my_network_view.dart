@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:linkedinclone/res/app_colors/app_colors.dart';
+import 'package:linkedinclone/res/widgets/my_text_button_widget.dart';
 import 'package:linkedinclone/res/widgets/my_text_widget.dart';
 
 class MyNetworkView extends StatelessWidget {
@@ -12,7 +13,6 @@ class MyNetworkView extends StatelessWidget {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: AppCollors.backgroundColor,
       appBar: AppBar(
         backgroundColor: AppCollors.whiteColor,
         leading: InkWell(
@@ -58,136 +58,288 @@ class MyNetworkView extends StatelessWidget {
           ),
         ],
       ),
-      body: Column(
+      backgroundColor: AppCollors.backgroundColor,
+      body: ListView(
         children: [
+          Column(
+            children: [
+              Container(
+                color: Colors.white,
+                padding: const EdgeInsets.all(10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // total invitaion
+                    const MyText(
+                      title: "Invitions (10)",
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
 
-          Container(
-            color: Colors.white,
-            padding: EdgeInsets.all(10),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // total invitaion
-                MyText(title: "Invitions (10)",fontSize: 20,fontWeight: FontWeight.bold,),
-
-                // requested connection
-                Container(
-                  color: AppCollors.whiteColor,
-                  // margin: EdgeInsets.symmetric(horizontal: 4),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
+                    // requested connection
+                    Container(
+                      color: AppCollors.whiteColor,
+                      padding: EdgeInsets.symmetric(vertical: 12),
+                      // margin: EdgeInsets.symmetric(horizontal: 4),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          CircleAvatar(radius: 30,),
-                          const SizedBox(width: 6,),
-
-                          // name and invation
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                          Row(
                             children: [
-                              MyText(title: "M Hashim",fontSize: 18,fontWeight: FontWeight.bold,),
-                              MyText(title: "Inviting you to Connect",color: Colors.grey,),
+                              const CircleAvatar(
+                                radius: 30,
+                              ),
+                              const SizedBox(
+                                width: 6,
+                              ),
+
+                              // name and invation
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: const [
+                                  MyText(
+                                    title: "M Hashim",
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  MyText(
+                                    title: "Inviting you to Connect",
+                                    color: Colors.grey,
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+
+                          // accecpt or cancle icon buttons,
+                          Row(
+                            children: [
+                              Icon(Icons.cancel_outlined,
+                                size: 50, color: AppCollors.grayColor,),
+                              Icon(
+                                Icons.check_circle_outline,
+                                size: 50,
+                                color: AppCollors.primaryColor,
+                              ),
                             ],
                           ),
                         ],
                       ),
-
-                      // accecpt or cancle icon buttons,
-                      Row(
+                    ),
+                    Divider(color: AppCollors.grayColor,),
+                    Container(
+                      color: AppCollors.whiteColor,
+                      padding: EdgeInsets.symmetric(vertical: 12),
+                      // margin: EdgeInsets.symmetric(horizontal: 4),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Icon(Icons.cancel_outlined,size: 40,color: AppCollors.grayColor),
-                          Icon(Icons.check_circle_outline,size: 40,color: AppCollors.primaryColor,),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 4,),
-                Container(
-                  color: AppCollors.whiteColor,
-                  // margin: EdgeInsets.symmetric(horizontal: 4),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          CircleAvatar(radius: 30,),
-                          const SizedBox(width: 6,),
+                          Row(
+                            children: [
+                              const CircleAvatar(
+                                radius: 30,
+                              ),
+                              const SizedBox(
+                                width: 6,
+                              ),
 
-                          // name and invation
-                          Container(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                MyText(title: "M Hashim",fontSize: 18,fontWeight: FontWeight.bold,),
-                                MyText(title: "Inviting you to Connect",color: Colors.grey,),
-                              ],
-                            ),
+                              // name and invation
+                              Container(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: const [
+                                    MyText(
+                                      title: "M Hashim",
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                    MyText(
+                                      title: "Inviting you to Connect",
+                                      color: Colors.grey,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+
+                          // accecpt or cancle icon buttons,
+                          Row(
+                            children: [
+                              Icon(Icons.cancel_outlined,
+                                  size: 50, color: AppCollors.grayColor),
+                              Icon(
+                                Icons.check_circle_outline,
+                                size: 50,
+                                color: AppCollors.primaryColor,
+                              ),
+                            ],
                           ),
                         ],
                       ),
-
-                      // accecpt or cancle icon buttons,
-                      Row(
-                        children: [
-                          Icon(Icons.cancel_outlined,size: 40,color: AppCollors.grayColor),
-                          Icon(Icons.check_circle_outline,size: 40,color: AppCollors.primaryColor,),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-
-          // people may you knoe grid view
-
-          Expanded(
-            child: GridView.builder(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                  crossAxisSpacing: 2,
-                  mainAxisSpacing: 4,
-                  childAspectRatio: 2/3
-                ),
-                itemCount: 6,
-                itemBuilder: (context , index) {
-              return Card(
-                elevation: 8,
-                child: Stack(
-                  children: [
-                    //user backgound image
-                    Container(
-                      height: height * 0.08,
-                      color: AppCollors.grayColor,
                     ),
-
-                    // user profile image
-                    Positioned(
-                      top: 20,
-                        left: 46,
-                        child: CircleAvatar(radius: 40,)
-                    ),
-
-                    // user name
-                    Positioned(
-                        top: 106,
-                        left: 40,
-                        child: MyText(title: "M Hashim",fontWeight: FontWeight.bold,fontSize: 20,)),
-
-                    // user work description here
-                    Positioned(
-                        top: 130,
-                        child: MyText(title: 'Flutter developer | cyber expert',textAlign: TextAlign.center,))
                   ],
                 ),
-              );
-            }),
+              ),
+              const SizedBox(
+                height: 8,
+              ),
+
+              // people may you knoe grid view
+
+              GridView.count(
+                physics: NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                crossAxisCount: 2,
+                childAspectRatio: 2/2.5,
+                children: [
+                  Card(
+                    elevation: 8,
+                    child: Stack(
+                      children: [
+                        //user backgound image
+                        Container(
+                          height: height * 0.08,
+                          decoration: BoxDecoration(
+                            color: AppCollors.grayColor,
+                            borderRadius: BorderRadius.circular(6)
+                          ),
+                        ),
+
+                        // user profile image
+                        const Positioned(
+                            top: 20,
+                            left: 0,
+                            right: 0,
+                            child: Center(
+                              child: CircleAvatar(
+                                radius: 40,
+                              ),
+                            )),
+
+                        // user name
+                        const Positioned(
+                            top: 106,
+                            left: 0,
+                            right: 0,
+                            child: Center(
+                              child: MyText(
+                                title: "M Hashim",
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                              ),
+                            )),
+
+                        // user work description here
+                        Positioned.fill(
+                            top: 140,
+                            child: SizedBox(
+                                width: width * 0.38,
+                                child: const MyText(
+                                  title: 'Flutter developer | cyber expert',
+                                  textAlign: TextAlign.center,
+                                ))),
+                        const SizedBox(
+                          height: 4,
+                        ),
+                        Positioned(
+                            top: 180,
+                            left: 0,
+                            right: 0,
+                            child: Center(
+                                child: MyTextButton(
+                                  title: 'Connect',
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  textColor: AppCollors.primaryColor,
+                                  border:
+                                  Border.all(color: AppCollors.primaryColor,width: 2.0),
+                                  width: width * 0.28,
+                                  height: height * 0.04,
+                                  alignment: Alignment.center,
+                                  borderRadius: BorderRadius.circular(20),
+                                )))
+                      ],
+                    ),
+                  ),
+                  Card(
+                    elevation: 8,
+                    child: Stack(
+                      children: [
+                        //user backgound image
+                        Container(
+                          height: height * 0.08,
+                          decoration: BoxDecoration(
+                            color: AppCollors.grayColor,
+                            borderRadius: BorderRadius.circular(4)
+                          ),
+                          
+                        ),
+
+                        // user profile image
+                        const Positioned(
+                            top: 20,
+                            left: 0,
+                            right: 0,
+                            child: Center(
+                              child: CircleAvatar(
+                                radius: 40,
+                              ),
+                            )),
+
+                        // user name
+                        const Positioned(
+                            top: 106,
+                            left: 0,
+                            right: 0,
+                            child: Center(
+                              child: MyText(
+                                title: "M Hashim",
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                              ),
+                            )),
+
+                        // user work description here
+                        Positioned.fill(
+                            top: 140,
+                            child: SizedBox(
+                                width: width * 0.38,
+                                child: const MyText(
+                                  title: 'Flutter developer | cyber expert',
+                                  textAlign: TextAlign.center,
+                                ))),
+                        const SizedBox(
+                          height: 4,
+                        ),
+                        Positioned(
+                            top: 180,
+                            left: 0,
+                            right: 0,
+                            child: Center(
+                                child: MyTextButton(
+                                  title: 'Connect',
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  textColor: AppCollors.primaryColor,
+                                  border:
+                                  Border.all(color: AppCollors.primaryColor,width: 2.0),
+                                  width: width * 0.28,
+                                  height: height * 0.04,
+                                  alignment: Alignment.center,
+                                  borderRadius: BorderRadius.circular(20),
+                                )))
+                      ],
+                    ),
+                  ),
+                ],
+              )
+            ],
           )
         ],
-      ),
+      )
     );
   }
 }
+
+
