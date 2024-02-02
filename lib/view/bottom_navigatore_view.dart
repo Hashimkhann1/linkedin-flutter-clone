@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:linkedinclone/res/app_colors/app_colors.dart';
 import 'package:linkedinclone/view/home_view/home_view.dart';
 import 'package:linkedinclone/view/my_network_view/my_network_view.dart';
+import 'package:linkedinclone/view/notification_view/notification_view.dart';
 import 'package:linkedinclone/view/profile_view/profile_view.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
@@ -14,7 +15,7 @@ class BottomNavigatoreView extends StatelessWidget {
       HomeView(),
       MyNetworkView(),
       ProfileView(),
-      ProfileView(),
+      NotificationView(),
       ProfileView(),
     ];
   }
