@@ -4,7 +4,7 @@ In this repository, I will push all the code for the LinkedIn Flutter clone and 
 
 I'm using MVVM architecture in this linkedin clone
 Sign in and Sign up ui is completed.
-home ui is completed for user post
-network view ui is Completed.
-working on notification.
+Home ui is completed for user post
+Network view ui is Completed.
+Notification UI is completed.
 Working on profile ui.
