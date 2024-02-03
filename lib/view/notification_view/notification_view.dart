@@ -57,26 +57,30 @@ class NotificationView extends StatelessWidget {
         ],
       ),
       drawer: Drawer(),
-      body: ListTile(
-        horizontalTitleGap: 4,
-        contentPadding: EdgeInsets.only(left: 4,top: 10),
-        leading: CircleAvatar(radius: 34,),
-        title: RichText(
-          text: TextSpan(
-            style: DefaultTextStyle.of(context).style,
-            children: <TextSpan>[
-              TextSpan(
-                text: 'M Hashim: ',
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              TextSpan(
-                text: 'Add a Post and this title will be here and its description will also be here',
-              ),
-            ],
+      body: ListView.builder(
+        itemCount: 10,
+          itemBuilder: (context , index) {
+        return ListTile(
+          horizontalTitleGap: 4,
+          contentPadding: EdgeInsets.only(left: 4,top: 10),
+          leading: CircleAvatar(radius: 34,),
+          title: RichText(
+            text: TextSpan(
+              style: DefaultTextStyle.of(context).style,
+              children: <TextSpan>[
+                TextSpan(
+                  text: 'M Hashim: ',
+                  style: TextStyle(fontWeight: FontWeight.bold,fontSize: 17),
+                ),
+                TextSpan(
+                  text: 'Add a Post and this title will be here and its description will also be here',
+                ),
+              ],
+            ),
           ),
-        ),
-        // title: MyText(title: "M Hashim: Add a Post and tis title will be here and it's description will aso be here",fontSize: 14,),
-      ),
+          // title: MyText(title: "M Hashim: Add a Post and tis title will be here and it's description will aso be here",fontSize: 14,),
+        );
+      })
     );
   }
 }
