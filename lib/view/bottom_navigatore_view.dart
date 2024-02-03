@@ -4,90 +4,83 @@ import 'package:linkedinclone/res/app_colors/app_colors.dart';
 import 'package:linkedinclone/view/home_view/home_view.dart';
 import 'package:linkedinclone/view/my_network_view/my_network_view.dart';
 import 'package:linkedinclone/view/notification_view/notification_view.dart';
-import 'package:linkedinclone/view/profile_view/profile_view.dart';
-import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+import 'package:linkedinclone/view/post_view/post_view.dart';
 
-class BottomNavigatoreView extends StatelessWidget {
-  BottomNavigatoreView({super.key});
+import 'profile_view/profile_view.dart';
 
-  List<Widget> _buildScreens() {
-    return [
+class BottomNavigatoreView extends StatefulWidget {
+  const BottomNavigatoreView({super.key});
+
+  @override
+  State<BottomNavigatoreView> createState() => _BottomNavigatoreViewState();
+}
+
+class _BottomNavigatoreViewState extends State<BottomNavigatoreView> {
+
+  int selectedScreen = 0;
+
+  List screens = [
       HomeView(),
       MyNetworkView(),
-      ProfileView(),
+      PostView(),
       NotificationView(),
       ProfileView(),
     ];
-  }
-
-  List<PersistentBottomNavBarItem> _navBarsItems() {
-    return [
-      PersistentBottomNavBarItem(
-        icon: Icon(Icons.home,),
-        title: ("Home"),
-        activeColorPrimary: AppCollors.blackColor,
-        inactiveColorPrimary: CupertinoColors.systemGrey,
-      ),
-      PersistentBottomNavBarItem(
-        icon: Icon(Icons.group),
-        title: ("My Network"),
-        activeColorPrimary: AppCollors.blackColor,
-        inactiveColorPrimary: CupertinoColors.systemGrey,
-      ),
-      PersistentBottomNavBarItem(
-        icon: Icon(Icons.add_box),
-        title: ("Posts"),
-        activeColorPrimary: AppCollors.blackColor,
-        inactiveColorPrimary: CupertinoColors.systemGrey,
-      ),
-      PersistentBottomNavBarItem(
-        icon: Icon(Icons.notifications_active),
-        inactiveIcon: Icon(Icons.notifications),
-        title: ("Notification"),
-        activeColorPrimary: AppCollors.blackColor,
-        inactiveColorPrimary: CupertinoColors.systemGrey,
-      ),
-      PersistentBottomNavBarItem(
-        icon: Icon(Icons.home_repair_service_rounded),
-        title: ("Jobs"),
-        activeColorPrimary: AppCollors.blackColor,
-        inactiveColorPrimary: CupertinoColors.systemGrey,
-      ),
-    ];
-  }
-
 
   @override
   Widget build(BuildContext context) {
-    PersistentTabController _controller;
-    _controller = PersistentTabController(initialIndex: 0);
-    return PersistentTabView(
-      context,
-      controller: _controller,
-      screens: _buildScreens(),
-      items: _navBarsItems(),
-      confineInSafeArea: true,
-      backgroundColor: Colors.white, // Default is Colors.white.
-      handleAndroidBackButtonPress: true, // Default is true.
-      resizeToAvoidBottomInset: true, // This needs to be true if you want to move up the screen when keyboard appears. Default is true.
-      stateManagement: true, // Default is true.
-      hideNavigationBarWhenKeyboardShows: true, // Recommended to set 'resizeToAvoidBottomInset' as true while using this argument. Default is true.
-      decoration: NavBarDecoration(
-        borderRadius: BorderRadius.circular(10.0),
-        colorBehindNavBar: Colors.white,
+    return Scaffold(
+      body: screens[selectedScreen],
+      bottomNavigationBar: Stack(
+        children: [
+          BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
+            currentIndex: selectedScreen,
+            selectedItemColor: AppCollors.blackColor,
+            onTap: (index) {
+              setState(() {
+                selectedScreen = index;
+              });
+            },
+            items: [
+              BottomNavigationBarItem(
+                icon: Icon(Icons.home,size: 28,),
+                label: 'Home',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.group,size: 28,),
+                label: 'My Network',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.add_box,size: 28,),
+                label: 'Post',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(selectedScreen == 2 ? Icons.notifications : Icons.notifications_active,size: 28,),
+                label: 'Notification',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.home_repair_service_rounded,size: 28,),
+                label: 'Jobs',
+              ),
+            ],
+          ),
+          Positioned(
+            top: 0,
+            left: MediaQuery.of(context).size.width / 5 * selectedScreen,
+            child: Container(
+              width: MediaQuery.of(context).size.width / 5,
+              height: kBottomNavigationBarHeight,
+              decoration: BoxDecoration(
+                border: Border(
+                  top: BorderSide(color: AppCollors.blackColor, width: 3.0),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
-      popAllScreensOnTapOfSelectedTab: true,
-      popActionScreens: PopActionScreensType.all,
-      itemAnimationProperties: ItemAnimationProperties( // Navigation Bar's items animation properties.
-        duration: Duration(milliseconds: 200),
-        curve: Curves.ease,
-      ),
-      screenTransitionAnimation: ScreenTransitionAnimation( // Screen transition animation on change of selected tab.
-        animateTabTransition: true,
-        curve: Curves.ease,
-        duration: Duration(milliseconds: 200),
-      ),
-      navBarStyle: NavBarStyle.style3, // Choose the nav bar style with this property.
     );
+
   }
 }
