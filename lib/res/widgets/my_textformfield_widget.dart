@@ -9,6 +9,7 @@ class MyTextFormField extends StatelessWidget {
   final TextEditingController? controller;
   final BorderSide enabledBorderSide;
   final BorderSide focusBorderSide;
+  final int? minLines;
 
   MyTextFormField(
       {super.key,
@@ -18,11 +19,13 @@ class MyTextFormField extends StatelessWidget {
       this.hintTextColor,
       required this.controller,
       this.enabledBorderSide = const BorderSide(color: Colors.grey),
-      this.focusBorderSide = const BorderSide(color: Color(0xff0c63bf),width: 2)});
+      this.focusBorderSide = const BorderSide(color: Color(0xff0c63bf),width: 2),
+      this.minLines = 1});
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      maxLines: minLines,
       controller: controller,
       decoration: InputDecoration(
         hintText: hintText,
