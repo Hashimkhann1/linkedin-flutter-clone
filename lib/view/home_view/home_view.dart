@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:linkedinclone/res/app_colors/app_colors.dart';
+import 'package:linkedinclone/res/widgets/my_drawer.dart';
 import 'package:linkedinclone/res/widgets/my_text_widget.dart';
 
 class HomeView extends StatelessWidget {
@@ -26,6 +27,7 @@ class HomeView extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Image.network(
+
                   'https://cdn-icons-png.flaticon.com/128/4140/4140061.png',
                 ),
               )),
@@ -62,7 +64,7 @@ class HomeView extends StatelessWidget {
             ),
           ],
         ),
-        drawer: Drawer(),
+        drawer: MyDrawer(),
         body: Column(
           children: [
             Expanded(
@@ -84,7 +86,7 @@ class HomeView extends StatelessWidget {
                         child: Row(
                           children: [
                             CircleAvatar(
-                              radius: 28,
+                              radius: 24,
                               child: Image.network('https://cdn-icons-png.flaticon.com/128/4140/4140061.png',),
                             ),
                             const SizedBox(
