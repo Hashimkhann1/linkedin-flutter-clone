@@ -10,8 +10,8 @@ class SignUpView extends StatelessWidget {
 
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmPasswordController = TextEditingController();
-
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +44,8 @@ class SignUpView extends StatelessWidget {
                 ),
 
                 // email textfield
-                MyTextFormField(hintText: "Email", controller: _emailController),
+                MyTextFormField(
+                    hintText: "Email", controller: _emailController),
                 const SizedBox(
                   height: 10,
                 ),
@@ -58,7 +59,8 @@ class SignUpView extends StatelessWidget {
 
                 // confirm password
                 MyTextFormField(
-                    hintText: "Confirm Password", controller: _confirmPasswordController),
+                    hintText: "Confirm Password",
+                    controller: _confirmPasswordController),
                 const SizedBox(
                   height: 16,
                 ),
@@ -74,10 +76,20 @@ class SignUpView extends StatelessWidget {
                   borderRadius: BorderRadius.circular(28),
                   alignment: Alignment.center,
                 ),
-                const SizedBox(height: 24,),
+                const SizedBox(
+                  height: 24,
+                ),
 
                 // new to linkedin
-                MyTextButton(title: "Already have an account? Sign in",fontSize: 18,fontWeight: FontWeight.bold,textColor: AppCollors.primaryColor,)
+                MyTextButton(
+                  title: "Already have an account? Sign in",
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  textColor: AppCollors.primaryColor,
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                )
               ],
             ),
           ),
