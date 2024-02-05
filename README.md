@@ -7,4 +7,4 @@ Sign in and Sign up ui is completed.
 Home ui is completed for user post
 Network view ui is Completed.
 Notification UI is completed.
-Profile ui is almost completed.
+Profile UI is completed.
