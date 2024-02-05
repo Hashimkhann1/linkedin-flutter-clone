@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:linkedinclone/res/app_colors/app_colors.dart';
+import 'package:linkedinclone/res/widgets/my_drawer.dart';
 import 'package:linkedinclone/res/widgets/my_text_button_widget.dart';
 import 'package:linkedinclone/res/widgets/my_text_widget.dart';
 
@@ -13,6 +14,7 @@ class MyNetworkView extends StatelessWidget {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     return Scaffold(
+      key: scaffoldKey,
       appBar: AppBar(
         backgroundColor: AppCollors.whiteColor,
         leading: InkWell(
@@ -58,6 +60,7 @@ class MyNetworkView extends StatelessWidget {
           ),
         ],
       ),
+      drawer: MyDrawer(),
       backgroundColor: AppCollors.backgroundColor,
       body: ListView(
         children: [
@@ -86,11 +89,12 @@ class MyNetworkView extends StatelessWidget {
                         children: [
                           Row(
                             children: [
-                              const CircleAvatar(
-                                radius: 30,
+                              CircleAvatar(
+                                radius: 28,
+                                child: Image.network('https://cdn-icons-png.flaticon.com/128/4140/4140061.png'),
                               ),
                               const SizedBox(
-                                width: 6,
+                                width: 8,
                               ),
 
                               // name and invation
@@ -136,11 +140,12 @@ class MyNetworkView extends StatelessWidget {
                         children: [
                           Row(
                             children: [
-                              const CircleAvatar(
-                                radius: 30,
+                              CircleAvatar(
+                                radius: 28,
+                                child: Image.network('https://cdn-icons-png.flaticon.com/128/4140/4140061.png'),
                               ),
                               const SizedBox(
-                                width: 6,
+                                width: 8,
                               ),
 
                               // name and invation
@@ -207,13 +212,14 @@ class MyNetworkView extends StatelessWidget {
                         ),
 
                         // user profile image
-                        const Positioned(
+                        Positioned(
                             top: 20,
                             left: 0,
                             right: 0,
                             child: Center(
                               child: CircleAvatar(
-                                radius: 40,
+                                radius: 38,
+                                child: Image.network('https://cdn-icons-png.flaticon.com/128/4140/4140061.png'),
                               ),
                             )),
 
@@ -277,13 +283,14 @@ class MyNetworkView extends StatelessWidget {
                         ),
 
                         // user profile image
-                        const Positioned(
+                        Positioned(
                             top: 20,
                             left: 0,
                             right: 0,
                             child: Center(
                               child: CircleAvatar(
-                                radius: 40,
+                                radius: 38,
+                                child: Image.network('https://cdn-icons-png.flaticon.com/128/4140/4140061.png'),
                               ),
                             )),
 
