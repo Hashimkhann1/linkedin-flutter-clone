@@ -56,7 +56,7 @@ class _BottomNavigatoreViewState extends State<BottomNavigatoreView> {
                 label: 'Post',
               ),
               BottomNavigationBarItem(
-                icon: Icon(selectedScreen == 2 ? Icons.notifications : Icons.notifications_active,size: 28,),
+                icon: Icon(selectedScreen == 3 ? Icons.notifications_active : Icons.notifications,size: 28,),
                 label: 'Notification',
               ),
               BottomNavigationBarItem(
