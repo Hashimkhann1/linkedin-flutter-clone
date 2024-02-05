@@ -10,6 +10,7 @@ class NotificationView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppCollors.whiteColor,
       key: scaffoldKey,
       appBar: AppBar(
         backgroundColor: AppCollors.whiteColor,
@@ -62,23 +63,39 @@ class NotificationView extends StatelessWidget {
           itemBuilder: (context , index) {
         return ListTile(
           horizontalTitleGap: 4,
-          contentPadding: EdgeInsets.only(left: 4,top: 10),
-          leading: CircleAvatar(radius: 34,),
-          title: RichText(
-            text: TextSpan(
-              style: DefaultTextStyle.of(context).style,
-              children: <TextSpan>[
-                TextSpan(
-                  text: 'M Hashim: ',
-                  style: TextStyle(fontWeight: FontWeight.bold,fontSize: 17),
-                ),
-                TextSpan(
-                  text: 'Add a Post and this title will be here and its description will also be here',
-                ),
+          contentPadding: EdgeInsets.only(left: 4, top: 10,bottom: 14),
+          leading: CircleAvatar(
+            radius: 26,
+            child: Image.network('https://cdn-icons-png.flaticon.com/128/4140/4140061.png',),
+          ),
+          title: Padding(
+            padding: const EdgeInsets.only(left: 6.0),
+            child: RichText(
+              text: TextSpan(
+                style: DefaultTextStyle.of(context).style,
+                children: <TextSpan>[
+                  TextSpan(
+                    text: 'M Hashim: ',
+                    style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),
+                  ),
+                  TextSpan(
+                    text: 'Add a Post and this title will be here and its description will also be here',
+                  ),
+                ],
+              ),
+            ),
+          ),
+
+          trailing: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                MyText(title: '20m'),
+                Icon(Icons.more_vert_rounded)
               ],
             ),
           ),
-          // title: MyText(title: "M Hashim: Add a Post and tis title will be here and it's description will aso be here",fontSize: 14,),
         );
       })
     );
