@@ -9,3 +9,4 @@ In this repository, I will push all the code for the LinkedIn Flutter clone and 
 - Notification UI is completed.
 - Profile UI is completed.
 - UI is completed.
+- Working on authentaction
