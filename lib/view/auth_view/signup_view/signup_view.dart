@@ -4,6 +4,7 @@ import 'package:linkedinclone/res/constant.dart';
 import 'package:linkedinclone/res/widgets/my_text_button_widget.dart';
 import 'package:linkedinclone/res/widgets/my_text_widget.dart';
 import 'package:linkedinclone/res/widgets/my_textformfield_widget.dart';
+import 'package:linkedinclone/view_model/auth/auth_view_model.dart';
 
 class SignUpView extends StatelessWidget {
   SignUpView({super.key});
@@ -12,6 +13,8 @@ class SignUpView extends StatelessWidget {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController =
       TextEditingController();
+
+  final AuthViewModel authViewModel = AuthViewModel();
 
   @override
   Widget build(BuildContext context) {
@@ -75,6 +78,9 @@ class SignUpView extends StatelessWidget {
                   height: height * 0.07,
                   borderRadius: BorderRadius.circular(28),
                   alignment: Alignment.center,
+                  onTap: () {
+                    authViewModel.signUp(context, _emailController.text.toString(), _passwordController.text.toString());
+                  },
                 ),
                 const SizedBox(
                   height: 24,
