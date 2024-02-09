@@ -1,10 +1,10 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:linkedinclone/view/auth_view/signup_view/signup_view.dart';
-import 'package:linkedinclone/view/bottom_navigatore_view.dart';
-import 'package:linkedinclone/view/home_view/home_view.dart';
 import 'package:linkedinclone/view/splash_view/spalsh_view.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
