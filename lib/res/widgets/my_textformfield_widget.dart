@@ -10,6 +10,7 @@ class MyTextFormField extends StatelessWidget {
   final BorderSide enabledBorderSide;
   final BorderSide focusBorderSide;
   final int? minLines;
+  final String? Function(String?)? validator;
 
   MyTextFormField(
       {super.key,
@@ -20,7 +21,8 @@ class MyTextFormField extends StatelessWidget {
       required this.controller,
       this.enabledBorderSide = const BorderSide(color: Colors.grey),
       this.focusBorderSide = const BorderSide(color: Color(0xff0c63bf),width: 2),
-      this.minLines = 1});
+      this.minLines = 1,
+      this.validator});
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +42,7 @@ class MyTextFormField extends StatelessWidget {
             borderSide: focusBorderSide
         ),
       ),
+      validator: validator,
     );
   }
 }
