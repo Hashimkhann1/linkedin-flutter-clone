@@ -10,6 +10,7 @@ class MyTextFormField extends StatelessWidget {
   final BorderSide enabledBorderSide;
   final BorderSide focusBorderSide;
   final int? minLines;
+  final bool obscureText;
   final String? Function(String?)? validator;
 
   MyTextFormField(
@@ -22,13 +23,15 @@ class MyTextFormField extends StatelessWidget {
       this.enabledBorderSide = const BorderSide(color: Colors.grey),
       this.focusBorderSide = const BorderSide(color: Color(0xff0c63bf),width: 2),
       this.minLines = 1,
-      this.validator});
+      this.validator,
+      this.obscureText = false});
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       maxLines: minLines,
       controller: controller,
+      obscureText: obscureText,
       decoration: InputDecoration(
         hintText: hintText,
         hintStyle: TextStyle(
