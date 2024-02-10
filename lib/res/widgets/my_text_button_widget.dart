@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:linkedinclone/res/app_colors/app_colors.dart';
 import 'package:linkedinclone/res/widgets/my_text_widget.dart';
 
 class MyTextButton extends StatelessWidget {
@@ -12,6 +13,8 @@ class MyTextButton extends StatelessWidget {
   final BorderRadius? borderRadius;
   final Border? border;
   final Alignment? alignment;
+  final bool loading;
+  final Color? loadingColor;
   final void Function()? onTap;
 
     MyTextButton(
@@ -26,7 +29,9 @@ class MyTextButton extends StatelessWidget {
       this.borderRadius,
       this.alignment,
       this.onTap,
-      this.border});
+      this.border,
+      this.loading = false,
+      this.loadingColor});
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +46,7 @@ class MyTextButton extends StatelessWidget {
           borderRadius: borderRadius ?? BorderRadius.circular(12),
           border: border,
         ),
-        child: MyText(
+        child: loading ? CircularProgressIndicator(color: loadingColor,) : MyText(
           title: title,
           fontWeight: fontWeight,
           fontSize: fontSize,
