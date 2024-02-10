@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:linkedinclone/res/app_colors/app_colors.dart';
 import 'package:linkedinclone/res/constant.dart';
 import 'package:linkedinclone/res/widgets/my_text_button_widget.dart';
@@ -6,12 +7,19 @@ import 'package:linkedinclone/res/widgets/my_text_widget.dart';
 import 'package:linkedinclone/res/widgets/my_textformfield_widget.dart';
 import 'package:linkedinclone/view/auth_view/signup_view/signup_view.dart';
 import 'package:linkedinclone/view/bottom_navigatore_view.dart';
+import 'package:linkedinclone/view_model/auth/auth_view_model.dart';
+import 'package:linkedinclone/view_model/getx/loading_getx/loading_getx.dart';
 
 class SignInView extends StatelessWidget {
   SignInView({super.key});
 
+  final _formKey = GlobalKey<FormState>();
+
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+
+  final AuthViewModel authViewModel = AuthViewModel();
+  final LoadingGetx loadingGetx = Get.put(LoadingGetx());
 
   @override
   Widget build(BuildContext context) {
@@ -42,17 +50,42 @@ class SignInView extends StatelessWidget {
                 const SizedBox(
                   height: 14,
                 ),
+                Form(
+                  key: _formKey,
+                    child: Column(
+                      children: [
+                        // email textfield
+                        MyTextFormField(
+                          hintText: "Email",
+                          controller: _emailController,
+                          validator: (value){
+                            if(value!.isEmpty){
+                              return "Enter Gmail";
+                            }
+                            else if(!value.contains("@gmail.com")){
+                              return "Invalid Gmail";
+                            }
 
-                // email textfield
-                MyTextFormField(
-                    hintText: "Email", controller: _emailController),
-                const SizedBox(
-                  height: 10,
+                          },
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+
+                        // password textfield
+                        MyTextFormField(
+                          hintText: "Password",
+                          controller: _passwordController,
+                          validator: (value){
+                            if(value!.isEmpty){
+                              return "Enter Password";
+                            }
+
+                          },
+                        ),
+                      ],
+                    )
                 ),
-
-                // password textfield
-                MyTextFormField(
-                    hintText: "Password", controller: _passwordController),
                 const SizedBox(
                   height: 14,
                 ),
@@ -68,20 +101,26 @@ class SignInView extends StatelessWidget {
                   height: 16,
                 ),
                 // sign in button
-                MyTextButton(
-                  title: 'Sign in',
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  textColor: AppCollors.whiteColor,
-                  backgroundColor: AppCollors.primaryColor,
-                  width: width * 0.99,
-                  height: height * 0.07,
-                  borderRadius: BorderRadius.circular(28),
-                  alignment: Alignment.center,
-                  onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => BottomNavigatoreView()));
-                  },
-                ),
+                Obx(() {
+                  return MyTextButton(
+                    title: 'Sign in',
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    textColor: AppCollors.whiteColor,
+                    backgroundColor: AppCollors.primaryColor,
+                    width: width * 0.99,
+                    height: height * 0.07,
+                    borderRadius: BorderRadius.circular(28),
+                    alignment: Alignment.center,
+                    loading: loadingGetx.isLoading.value,
+                    loadingColor: AppCollors.whiteColor,
+                    onTap: () {
+                      if(_formKey.currentState!.validate()){
+                        authViewModel.signIn(context, _emailController.text.toString(), _passwordController.text.toString());
+                      }
+                    },
+                  );
+                }),
                 const SizedBox(
                   height: 24,
                 ),
