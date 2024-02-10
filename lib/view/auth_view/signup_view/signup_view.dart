@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:linkedinclone/res/app_colors/app_colors.dart';
 import 'package:linkedinclone/res/constant.dart';
 import 'package:linkedinclone/res/widgets/my_text_button_widget.dart';
 import 'package:linkedinclone/res/widgets/my_text_widget.dart';
 import 'package:linkedinclone/res/widgets/my_textformfield_widget.dart';
 import 'package:linkedinclone/view_model/auth/auth_view_model.dart';
+import 'package:linkedinclone/view_model/getx/loading_getx/loading_getx.dart';
 
 class SignUpView extends StatelessWidget {
   SignUpView({super.key});
+
+  // form key
+  final _formKey = GlobalKey<FormState>();
 
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -15,6 +20,8 @@ class SignUpView extends StatelessWidget {
       TextEditingController();
 
   final AuthViewModel authViewModel = AuthViewModel();
+  // initilazing LoadinGetx
+  final LoadingGetx loadingGetx = Get.put(LoadingGetx());
 
   @override
   Widget build(BuildContext context) {
@@ -36,39 +43,74 @@ class SignUpView extends StatelessWidget {
                   width: 130,
                   height: 110,
                 ),
-                MyText(
+                const MyText(
                   title: "Sign Up",
                   fontSize: 40,
                   fontWeight: FontWeight.bold,
                 ),
-                MyText(title: 'Touch with profissional world!'),
+                const MyText(title: 'Touch with profissional world!'),
                 const SizedBox(
                   height: 14,
                 ),
+                Form(
+                  key: _formKey,
+                    child:
+                Column(
+                  children: [
+                    // email textfield
+                    MyTextFormField(
+                      hintText: "Email",
+                      controller: _emailController,
+                      validator: (value) {
+                        if(value!.isEmpty){
+                          return "Enter Gmail";
+                        }else if(!value.contains('@gmail.com')){
+                          return "Invalid gmail";
+                        };
+                      },
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
 
-                // email textfield
-                MyTextFormField(
-                    hintText: "Email", controller: _emailController),
-                const SizedBox(
-                  height: 10,
-                ),
+                    // password textfield
+                    MyTextFormField(
+                      hintText: "Password",
+                      controller: _passwordController,
+                      obscureText: true,
+                      validator: (value) {
+                        if(value!.isEmpty){
+                          return "Enter passsword";
+                        }else if(value.length <= 7){
+                          return "Password must be grather than 7 charcaters";
+                        };
+                      },
+                    ),
+                    const SizedBox(
+                      height: 16,
+                    ),
 
-                // password textfield
-                MyTextFormField(
-                    hintText: "Password", controller: _passwordController),
-                const SizedBox(
-                  height: 16,
-                ),
+                    // confirm password
+                    MyTextFormField(
+                      hintText: "Confirm Password",
+                      controller: _confirmPasswordController,
+                      obscureText: true,
+                      validator: (value) {
+                        if(value!.isEmpty){
+                          return "Enter confirm password";
+                        }else if(value != _passwordController.text){
+                          return "Confiem password not matched";
+                        };
+                      },
+                    ),
+                  ],
+                )),
 
-                // confirm password
-                MyTextFormField(
-                    hintText: "Confirm Password",
-                    controller: _confirmPasswordController),
                 const SizedBox(
                   height: 16,
                 ),
                 // sign in button
-                MyTextButton(
+                Obx(() => MyTextButton(
                   title: 'Sign Up',
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -78,10 +120,14 @@ class SignUpView extends StatelessWidget {
                   height: height * 0.07,
                   borderRadius: BorderRadius.circular(28),
                   alignment: Alignment.center,
+                  loading: loadingGetx.isLoading.value,
+                  loadingColor: AppCollors.whiteColor,
                   onTap: () {
-                    authViewModel.signUp(context, _emailController.text.toString(), _passwordController.text.toString());
+                    if(_formKey.currentState!.validate()){
+                      authViewModel.signUp(context, _emailController.text.toString(), _passwordController.text.toString());
+                    }
                   },
-                ),
+                ),),
                 const SizedBox(
                   height: 24,
                 ),
