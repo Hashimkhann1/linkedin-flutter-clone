@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:linkedinclone/res/app_colors/app_colors.dart';
+import 'package:linkedinclone/res/constant.dart';
 import 'package:linkedinclone/res/widgets/my_text_button_widget.dart';
 import 'package:linkedinclone/res/widgets/my_text_widget.dart';
+import 'package:linkedinclone/view/profile_view/update_profile_intro/update_profile_intro.dart';
 
 class ProfileView extends StatelessWidget {
   ProfileView({super.key});
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  final Constant constant = Constant();
 
   @override
   Widget build(BuildContext context) {
@@ -149,11 +152,24 @@ class ProfileView extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          // user name
-                          MyText(
-                            title: 'Muhammad Hashim',
-                            fontSize: 26,
-                            fontWeight: FontWeight.bold,
+
+                          // user name and edit icon
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              MyText(
+                                title: 'Muhammad Hashim',
+                                fontSize: 26,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  Navigator.push(context, MaterialPageRoute( fullscreenDialog: true, builder: (context) => UpdateProfileIntro()));
+                                  // constant.showBottomSheet(context);
+                                },
+                                  child: Icon(Icons.edit)
+                              ),
+                            ],
                           ),
 
                           // user information
