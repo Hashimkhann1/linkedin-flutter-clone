@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:linkedinclone/res/app_colors/app_colors.dart';
 import 'package:linkedinclone/res/widgets/my_text_widget.dart';
 import 'package:linkedinclone/view/profile_view/profile_view.dart';
+import 'package:linkedinclone/view_model/auth/auth_view_model.dart';
 
 class MyDrawer extends StatelessWidget {
-  const MyDrawer({super.key});
+  MyDrawer({super.key});
+
+  final AuthViewModel authViewModel = AuthViewModel();
 
   @override
   Widget build(BuildContext context) {
@@ -119,12 +122,17 @@ class MyDrawer extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // setting
-                  Row(
-                    children: [
-                      Icon(Icons.settings,size: 28,),
-                      const SizedBox(width: 6,),
-                      MyText(title: 'Settings',fontSize: 20,fontWeight: FontWeight.bold,)
-                    ],
+                  InkWell(
+                    onTap: () {
+                      authViewModel.signOut(context);
+                    },
+                    child: Row(
+                      children: [
+                        Icon(Icons.settings,size: 28,),
+                        const SizedBox(width: 6,),
+                        MyText(title: 'Settings',fontSize: 20,fontWeight: FontWeight.bold,)
+                      ],
+                    ),
                   )
                 ],
               ),
