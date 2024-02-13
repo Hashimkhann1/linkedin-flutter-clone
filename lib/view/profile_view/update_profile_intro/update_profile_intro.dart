@@ -8,13 +8,16 @@ import 'package:linkedinclone/view_model/getx/loading_getx/loading_getx.dart';
 import 'package:linkedinclone/view_model/profile_view_model/profile_view_model.dart';
 
 class UpdateProfileIntro extends StatelessWidget {
-  UpdateProfileIntro({super.key});
+  final String? firstName;
+  final String? lastName;
+  final String? headLine;
+  UpdateProfileIntro({super.key,this.firstName,this.lastName,this.headLine});
 
   final _formKey = GlobalKey<FormState>();
 
-  final TextEditingController _firstName = TextEditingController();
-  final TextEditingController _lastName = TextEditingController();
-  final TextEditingController _headLine = TextEditingController();
+  late TextEditingController _firstName = TextEditingController(text: firstName);
+  late TextEditingController _lastName = TextEditingController(text: lastName);
+  late TextEditingController _headLine = TextEditingController(text: headLine);
 
   final ProfileViewModel profileViewModel = ProfileViewModel();
   final LoadingGetx loadingGetx = Get.put(LoadingGetx());
