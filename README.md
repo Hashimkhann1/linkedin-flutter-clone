@@ -10,4 +10,4 @@ In this repository, I will push all the code for the LinkedIn Flutter clone and 
 - Profile UI is completed.
 - UI is completed.
 - Authentaction is completed.
-- Working on user profile data to save and update on firestore
+- Working on user profile about to update.
