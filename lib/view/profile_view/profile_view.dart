@@ -10,6 +10,7 @@ import 'package:linkedinclone/view_model/logedin_user_data_list_view_model/loged
 class ProfileView extends StatelessWidget {
   ProfileView({super.key});
 
+
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final Constant constant = Constant();
 
@@ -250,9 +251,14 @@ class ProfileView extends StatelessWidget {
                             fontSize: 26,
                             fontWeight: FontWeight.bold,
                           ),
-                          Icon(
-                            Icons.edit,
-                            size: 28,
+                          InkWell(
+                            onTap: () {
+                              Constant().showBottomSheet(context);
+                            },
+                            child: Icon(
+                              Icons.edit,
+                              size: 28,
+                            ),
                           )
                         ],
                       ),
