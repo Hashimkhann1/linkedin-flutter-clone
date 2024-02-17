@@ -17,9 +17,9 @@ class GetLogedinUserDataViewModel {
   void getLogedinUserData() async {
     try{
       DocumentSnapshot<Map<String, dynamic>> data = await _firestore.doc(_auth.currentUser!.uid.toString()).get();
+      print(data.data());
 
       if(data.data() != null){
-        print(data.data());
         dynamic userData = await LogedinUserDataModel.fromJson(data.data()!);
         logedinUserDataListViewModel.logedinUserDataList.add(userData);
       }
