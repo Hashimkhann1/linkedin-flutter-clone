@@ -9,7 +9,7 @@ import 'package:linkedinclone/view_model/getx/loading_getx/loading_getx.dart';
 
 class ProfileViewModel {
 
-  final _auth = FirebaseAuth.instance.currentUser!;
+  final _auth = FirebaseAuth.instance.currentUser;
   final _firestore = FirebaseFirestore.instance.collection('users');
 
   final Constant constant = Constant();
@@ -19,7 +19,7 @@ class ProfileViewModel {
   updateIntro(BuildContext context , String firstName , lastName , headlines) async {
     loadingGetx.setLoading();
     try{
-      await _firestore.doc(_auth.uid).update({
+      await _firestore.doc(_auth!.uid).update({
         "firstName": firstName,
         "lastName": lastName,
         "headlin": headlines,
@@ -32,6 +32,24 @@ class ProfileViewModel {
       loadingGetx.setLoading();
       constant.toastMessage("Try again something went wrong");
       print('error while updating profile intro from ProfileViewModel $error');
+    }
+  }
+
+  // update profile about
+  updateAboutProfile(BuildContext context , String about) async {
+    print(about);
+    try{
+      loadingGetx.setLoading();
+      await _firestore.doc(_auth!.uid).update({
+        'profileAbout': about,
+      }).then((value) {
+        constant.toastMessage("About update successfuly");
+        Navigator.pop(context);
+        loadingGetx.setLoading();
+      });
+    }catch(error){
+      loadingGetx.setLoading();
+      print("error while update profile about section from ProfileViewModel $error >>>");
     }
   }
 
