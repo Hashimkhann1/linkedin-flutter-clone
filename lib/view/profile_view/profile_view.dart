@@ -17,6 +17,7 @@ class ProfileView extends StatelessWidget {
   final LogedinUserDataListViewModel logedinUserDataListViewModel =
       Get.put(LogedinUserDataListViewModel());
 
+
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -253,7 +254,7 @@ class ProfileView extends StatelessWidget {
                           ),
                           InkWell(
                             onTap: () {
-                              Constant().showBottomSheet(context);
+                              Constant().showBottomSheet(context,logedinUserDataListViewModel.logedinUserDataList[0].profileAbout.toString());
                             },
                             child: Icon(
                               Icons.edit,
@@ -267,14 +268,12 @@ class ProfileView extends StatelessWidget {
                       ),
 
                       // about me
-                      MyText(
-                        title:
-                            'In publishing and graphic design, Lorem ipsum is a placeholder text '
-                            'commonly used to demonstrate the visual form of a document or a '
-                            'typeface without relying on meaningful content.Lorem ipsum may be'
-                            ' used as a placeholder before the final copy is available.',
-                        fontSize: 16,
-                      )
+                      Obx(() {
+                        return MyText(
+                          title: logedinUserDataListViewModel.logedinUserDataList[0].profileAbout.toString(),
+                          fontSize: 16,
+                        );
+                      })
                     ],
                   ),
                 ),
