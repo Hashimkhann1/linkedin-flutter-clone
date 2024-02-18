@@ -19,7 +19,7 @@ class Constant {
   final _auth = FirebaseAuth.instance;
   final LoadingGetx loadingGetx = Get.put(LoadingGetx());
 
-  final editAboutController = TextEditingController();
+
 
   // toast message
 
@@ -33,7 +33,7 @@ class Constant {
 
 
   // bottom sheet for profile about update
-  void showBottomSheet(BuildContext context) {
+  void showBottomSheet(BuildContext context , String currentAboutText) {
     showModalBottomSheet(
         backgroundColor: AppCollors.backgroundColor,
         isScrollControlled: true,
@@ -41,6 +41,7 @@ class Constant {
         builder: (context) {
           final width = MediaQuery.of(context).size.width;
           final height = MediaQuery.of(context).size.height;
+          final _editAboutController = TextEditingController(text: currentAboutText);
 
           return Padding(
             padding: const EdgeInsets.symmetric(vertical: 34.0, horizontal: 10),
@@ -74,7 +75,7 @@ class Constant {
                 // textfield for edit about
                 MyTextFormField(
                   hintText: "About",
-                  controller: editAboutController,
+                  controller: _editAboutController,
                   minLines: 10,
                 ),
                 SizedBox(
@@ -94,17 +95,8 @@ class Constant {
                     alignment: Alignment.center,
                     onTap: () async {
                       // loadingGetx.setLoading();
-                      if(editAboutController.text.isNotEmpty){
-                        // await FirebaseFirestore.instance.collection('users').doc(_auth.currentUser!.uid).update({
-                        //   'profileAbout': editAboutController.text.toString(),
-                        // }).then((value) {
-                        //   loadingGetx.setLoading();
-                        //   Constant().toastMessage("Profile about updated successfully");
-                        // }).onError((error, stackTrace) {
-                        //   loadingGetx.setLoading();
-                        //   Constant().toastMessage("Try again something went wrong");
-                        // });
-                        ProfileViewModel().updateAboutProfile(context, editAboutController.text.toString());
+                      if(_editAboutController.text.isNotEmpty){
+                        ProfileViewModel().updateAboutProfile(context, _editAboutController.text.toString());
                       }else{
                         Constant().toastMessage("About Not be empty");
                       }
