@@ -16,7 +16,6 @@ class SplashViewModel {
     if(_auth != null){
       logedinUserDataViewModel.getLogedinUserData();
     }
-
     Navigator.push(context, MaterialPageRoute(builder: (context) => _auth != null ? BottomNavigatoreView() : SignInView()));
 
   }
