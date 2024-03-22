@@ -19,6 +19,7 @@ class AuthViewModel {
   // initilaing LoadinGetX
   final LoadingGetx loadingGetx = Get.put(LoadingGetx());
 
+
   // save initial user data
   initialUserData(String gmail) async {
     try{
