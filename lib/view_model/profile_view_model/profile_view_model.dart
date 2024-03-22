@@ -37,7 +37,7 @@ class ProfileViewModel {
 
   // update profile about
   updateAboutProfile(BuildContext context , String about) async {
-    print(about);
+
     try{
       loadingGetx.setLoading();
       await _firestore.doc(_auth!.uid).update({
