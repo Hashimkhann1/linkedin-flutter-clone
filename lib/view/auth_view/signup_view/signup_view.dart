@@ -110,6 +110,7 @@ class SignUpView extends StatelessWidget {
                   height: 16,
                 ),
                 // sign in button
+
                 Obx(() => MyTextButton(
                   title: 'Sign Up',
                   fontSize: 20,
